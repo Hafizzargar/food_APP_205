@@ -1,12 +1,16 @@
 require('dotenv').config();
+require('events').EventEmitter.defaultMaxListeners = 15;
+
 const express=require('express');
 const dbconnection = require('./dbconnection');
 const authrouter = require('./router/authrouter');
 const session=require('express-session');
 const connectmongosession=require("connect-mongodb-session")(session);
+const cookieParser=require('cookie-parser');
 
 
 const app=express();
+app.use(cookieParser());
 const port=process.env.port || 3000;
 
 const store=connectmongosession({
@@ -14,6 +18,7 @@ const store=connectmongosession({
     collection:'session'
 })
 const cors = require('cors');
+const payrouter = require('./router/payment');
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -34,6 +39,8 @@ app.use(express.urlencoded({extended:true}));
 
 
 app.use('/api/auth',authrouter);
+// app.use('/api/data',)
+app.use('/api/pay',payrouter);
 
 
 

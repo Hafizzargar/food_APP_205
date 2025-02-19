@@ -31,6 +31,12 @@ const logincontroller=async(req,res)=>{
             name:userexist.name,
             email:userexist.email,
         }
+        res.cookie("auth_token", token, {
+            httpOnly: true, // Prevent access from JavaScript
+            secure: process.env.NODE_ENV === "production", // Only send over HTTPS in production
+            sameSite: "strict",
+            maxAge: 60 * 60 * 1000, // 1 hour
+        });
 
         return res.json({message:"login done",status:201,user:userexist,Token:token})
         
@@ -188,4 +194,10 @@ const chechmatchotp=async(req,res)=>{
     }
     
 }
-module.exports={logincontroller,registercontroller,verifiedemailcontroller,verificationagain,changepwdcontroller,chechmatchotp};
+const logout = (req, res) => {
+    console.log("check");
+    // localStorage.removeItem("auth_token");
+    res.clearCookie("auth_token");
+    res.json({ message: "Logged out successfully" });
+};
+module.exports={logincontroller,registercontroller,verifiedemailcontroller,verificationagain,changepwdcontroller,chechmatchotp,logout};
