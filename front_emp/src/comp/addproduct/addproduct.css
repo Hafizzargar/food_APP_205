@@ -1,0 +1,91 @@
+.addproduct-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.addproduct-container h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.addproduct-label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  color: #555;
+}
+
+.addproduct-input,
+.addproduct-select,
+.addproduct-input-file,
+.addproduct-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+.addproduct-input:focus,
+.addproduct-select:focus,
+.addproduct-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.addproduct-select {
+  background-color: #fff;
+}
+
+.addproduct-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.addproduct-button:hover {
+  background-color: #0056b3;
+}
+
+.addproduct-input-file {
+  border: none;
+  padding-left: 0;
+}
+
+.addproduct-textarea {
+  resize: vertical;
+}
+
+.addproduct-container div[style*="display: flex"] {
+  justify-content: center;
+  align-items: center;
+  padding: 5px 15px;
+  cursor: pointer;
+  width: fit-content;
+  margin-left: auto;
+}
+.addproduct-container div[style*="display: flex"]:hover {
+  background-color: #444;
+}
+.a1{
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  font-weight: 900;
+  font-size: 30px;
+}

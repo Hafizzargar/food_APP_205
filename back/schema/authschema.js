@@ -20,8 +20,22 @@ const userSchema=new Schema({
         default:false
     },
       // OTP Fields
-      otp: { type: String }, // Store OTP as a string
-      otpExpires: { type: Date } // Expiration time for OTP
+      otp: {
+         type: String
+         }, // Store OTP as a string
+      otpExpires: { 
+        type: Date
+     }, // Expiration time for OTP
+
+    userwork:{
+        type:String,
+        default:"user"
+    },
+    // cartpresent:{
+    //     type:Boolean,
+    //     default:false
+    // }
+
 
 })
 module.exports=userSchema;

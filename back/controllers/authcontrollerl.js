@@ -7,7 +7,7 @@ const jwt=require("jsonwebtoken");
 const sendotpverf = require("../utils/nodmailerotp");
 
 const logincontroller=async(req,res)=>{
-    console.log(req.body);
+  
     const {email,password}=req.body;
     try{
         const userexist=await userModel.findOne({email});
@@ -15,11 +15,11 @@ const logincontroller=async(req,res)=>{
             return res.json({message:'Invalid email',status:200});
         }
         const correctpwd=await bcrypt.compare(password,userexist.password);
-        console.log(correctpwd);
+      
         if(!correctpwd){
             return res.json({message:'invalid password',status:400});
         }
-        console.log(userexist);
+     
         if(!userexist.isEmailvalid){
             return res.json({message:'Email is not verfied first verfied then login'})
         }
@@ -37,10 +37,14 @@ const logincontroller=async(req,res)=>{
             sameSite: "strict",
             maxAge: 60 * 60 * 1000, // 1 hour
         });
-
-        return res.json({message:"login done",status:201,user:userexist,Token:token})
-        
-    
+        if(userexist.userwork!=='user'){
+            return res.json({message:"login done by employee successfully done",status:201,user:userexist,Token:token})
+            
+        }
+        if(userexist.userwork==='user'){
+            return res.json({message:"login done",status:201,user:userexist,Token:token})
+        }
+        return res.json({message:'error by serverside'})
 
     }
     catch(err){
@@ -50,7 +54,6 @@ const logincontroller=async(req,res)=>{
     
 }
 const registercontroller=async(req,res)=>{
-    console.log(req.body);
     const {name,email,password}=req.body;
     if(!name || !email || !password){
         return res.send('invalid cred.... Enter data again')
@@ -90,14 +93,12 @@ const registercontroller=async(req,res)=>{
 
 }
 const verifiedemailcontroller=async(req,res)=>{
-    console.log(req.query);
     const {Token}=req.query;
 
     try{
         const getdata=await jwt.verify(Token,process.env.tokenkey)
         const email=getdata.email;
         const validuser=await userModel.findOne({email});
-        console.log(validuser);
         
         if(!validuser){
             return res.json({message:'Token invalid',status:400})
@@ -108,6 +109,7 @@ const verifiedemailcontroller=async(req,res)=>{
     }
     catch(err){
         console.log('err in verfiedemailcontroller');
+        
         
     }
     

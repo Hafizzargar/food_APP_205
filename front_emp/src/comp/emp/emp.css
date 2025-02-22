@@ -1,0 +1,41 @@
+/* Emp component container */
+.emp-container {
+    background: #1e1e1e;
+    min-height: 100vh;
+    color: #fff;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Logo */
+  .emp-logo img {
+    width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .emp-logo img:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Button container */
+  .emp-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  
+  .emp-button-container button {
+    padding: 10px 15px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .emp-button-container button:hover {
+    background: #e68900;
+  }
+  
